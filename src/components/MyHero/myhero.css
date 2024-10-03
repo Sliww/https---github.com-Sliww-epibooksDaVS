@@ -1,0 +1,14 @@
+.personal {
+    border: 1px solid black;
+    background-image: url(../../assets/books.jpg);
+    color: white;
+}
+
+.heroSection {
+    text-shadow: 
+                -1px -1px 0 #000,  /* Contorno sopra a sinistra */
+                1px -1px 0 #000,   /* Contorno sopra a destra */
+                -1px 1px 0 #000,   /* Contorno sotto a sinistra */
+                1px 1px 0 #000;
+}
+

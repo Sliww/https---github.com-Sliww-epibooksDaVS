@@ -1,0 +1,14 @@
+.navPersonal {
+    background-color: #110F24;
+}
+
+.navProperties {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logolinks {
+    justify-content: center;
+    align-items: center;
+}

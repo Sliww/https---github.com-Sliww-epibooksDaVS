@@ -1,0 +1,51 @@
+.buttonDetails {
+    border: none;
+    background-color: #E70FAB;
+    align-self: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.7rem;
+}
+
+.card {
+    width: 200px;
+    height: 400px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.1); /* Sposta la card leggermente verso l'alto */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Aggiunge un'ombra per dare l'effetto di sollevamento */
+}
+  
+.card-img-top {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+  
+.card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+ 
+
+.bookTitle {
+    font-size: 0.8rem;
+    display: -webkit-box;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.categoryBook {
+    font-size: 0.9rem;
+}

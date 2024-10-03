@@ -1,0 +1,14 @@
+.buttonCustom {
+    border-radius: 7px;
+    background-color: #84005f;
+    color: white;
+    border: 1px solid #E70FAB;
+}
+
+.buttonCustom:hover {
+    border-radius: 7px;
+    background-color: #E70FAB;
+    color: white;
+    border: 1px solid #84005f;
+}
+

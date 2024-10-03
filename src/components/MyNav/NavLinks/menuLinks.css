@@ -1,0 +1,17 @@
+.menuLinks {
+    margin-bottom: 0;
+}
+
+.menuLinks a {
+    text-decoration: none;
+    color: white;
+}
+
+.menuLinks a:hover {
+    text-decoration: none;
+    color: #E70FAB;
+}
+
+.menuLinks li {
+    list-style: none;
+}
