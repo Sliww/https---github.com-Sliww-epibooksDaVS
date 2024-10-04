@@ -17,8 +17,8 @@
 }
 
 .card:hover {
-    transform: translateY(-10px) scale(1.1); /* Sposta la card leggermente verso l'alto */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Aggiunge un'ombra per dare l'effetto di sollevamento */
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
   
 .card-img-top {
