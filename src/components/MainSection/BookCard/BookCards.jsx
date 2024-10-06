@@ -1,12 +1,25 @@
+import { useContext, useState } from "react";
+import { BookContext } from "../../../context/bookContext";
 import "./bookcard.css"
 import { Col } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 export const BookCards = ({ title, img, price, category, asin }) => {
+
+    const { isSelected, onChangeSelected, handleSelectBook, selectedBook } = useContext(BookContext);
+    const [show, setShow] = useState(false);
+
+    const onChangeShowReview = () => {
+        setShow(!show)
+    }
+
     return (
         <Col sm={2}>
-            <Card>
+            <Card 
+            onClick={()=>onChangeSelected(asin)}
+            style={{ outline: isSelected.includes(asin) ? "2px solid red" : "none" }}
+            >
                 <Card.Img variant="top" src={img} className="card-img-top" />
                 <Card.Body className="card-body">
                     <Card.Title
