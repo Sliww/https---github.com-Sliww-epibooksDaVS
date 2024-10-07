@@ -1,8 +1,13 @@
 .imgAbout {
     width: 100%;
+    border-radius: 50%;
 
 }
 
 h5 {
     line-height: 3.5em;
+}
+
+strong {
+    color: #E70FAB;
 }

@@ -9,8 +9,17 @@ export const BookContext = createContext();
 
 export const BookContextProvider = ({children})=>{
 
+    const shuffleArray = (array) => {
+        const shuffledArray = [];
+        array.forEach((item) => {
+            const randomIndex = Math.floor(Math.random() * (shuffledArray.length + 1));
+            shuffledArray.splice(randomIndex, 0, item);
+        });
+        return shuffledArray;
+    };
+
     const allBooks = [...scifi, ...history, ...fantasy, ...horror, ...romance]
-    const someBooks = allBooks.slice(0, 20);
+    const someBooks = shuffleArray([...allBooks]).slice(0, 20);
 
     const [books, setBooks] = useState(someBooks)
 

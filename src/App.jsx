@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { HomePage } from './pages/HomePage'
 import { About } from './pages/About'
 import { ContactUs } from './pages/ContactUs'
+import { NotFound } from './pages/NotFoundPage'
+import { Details } from './pages/Details'
 
 const App = () => {
 
@@ -13,10 +15,12 @@ const App = () => {
       <BrowserRouter>
       <Routes>
         <Route exact path='/' element={<HomePage/>}/>
-
         <Route path='/about' element={<About/>}/>
-
         <Route path='/contactus' element={<ContactUs/>}/>
+        <Route path='/details/:asin' element={<Details/>}/>
+        
+
+        <Route path='*' element={<NotFound/>} />
 
 
 

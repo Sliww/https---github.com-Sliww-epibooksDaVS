@@ -1,25 +1,22 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { BookContext } from "../../../context/bookContext";
 import "./bookcard.css"
 import { Col } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { Link } from "react-router-dom"
 
 export const BookCards = ({ title, img, price, category, asin }) => {
 
-    const { isSelected, onChangeSelected, handleSelectBook, selectedBook } = useContext(BookContext);
-    const [show, setShow] = useState(false);
+    const { isSelected, onChangeSelected } = useContext(BookContext);
 
-    const onChangeShowReview = () => {
-        setShow(!show)
-    }
 
     return (
         <Col sm={2}>
-            <Card 
-            className="cardBodyGeneral"
-            onClick={()=>onChangeSelected(asin)}
-            style={{ outline: isSelected.includes(asin) ? "2px solid red" : "none" }}
+            <Card
+                className="cardBodyGeneral"
+                onClick={() => onChangeSelected(asin)}
+                style={{ outline: isSelected.includes(asin) ? "2px solid red" : "none" }}
             >
                 <Card.Img variant="top" src={img} className="card-img-top" />
                 <Card.Body className="card-body">
@@ -35,6 +32,10 @@ export const BookCards = ({ title, img, price, category, asin }) => {
                         <Card.Text className="m-0">
                             <strong>{price} $</strong>
                         </Card.Text>
+                        <Link to={`/details/${asin}`}>
+                            <Button className="buttonDetails">Details</Button>
+                        </Link>
+
                     </div>
 
                 </Card.Body>

@@ -1,3 +1,11 @@
+.buttonDetails {
+    border: none;
+    background-color: #E70FAB;
+    align-self: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.7rem;
+}
+
 .card {
     width: 200px;
     height: 400px;
