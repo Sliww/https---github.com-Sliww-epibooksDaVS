@@ -206,9 +206,6 @@ export const ReviewAndComment = () => {
                 </Col>
             </Row>
 
-
-            // MODALE PER L'EDIT DELLA RECENSIONE 
-
             <Modal show={showModal} onHide={handleCloseModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>Edit Review</Modal.Title>
@@ -244,7 +241,7 @@ export const ReviewAndComment = () => {
                 </Modal.Body>
             </Modal>
 
-            //MODALE CREAZIONE RECENSIONE
+
 
             <Modal
                 show={showCreateModal}
