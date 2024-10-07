@@ -17,6 +17,7 @@ export const BookCards = ({ title, img, price, category, asin }) => {
     return (
         <Col sm={2}>
             <Card 
+            className="cardBodyGeneral"
             onClick={()=>onChangeSelected(asin)}
             style={{ outline: isSelected.includes(asin) ? "2px solid red" : "none" }}
             >
@@ -34,7 +35,6 @@ export const BookCards = ({ title, img, price, category, asin }) => {
                         <Card.Text className="m-0">
                             <strong>{price} $</strong>
                         </Card.Text>
-                        <Button className="buttonDetails">Details</Button>
                     </div>
 
                 </Card.Body>

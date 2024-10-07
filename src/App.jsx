@@ -1,17 +1,27 @@
 import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css"
-import { Navbar } from './components/MyNav/Navbar'
-import { HeroSection } from './components/MyHero/myHero'
-import { MainSection } from './components/MainSection/MainSection'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HomePage } from './pages/HomePage'
+import { About } from './pages/About'
+import { ContactUs } from './pages/ContactUs'
 
-const App = ()=> {
-  
+const App = () => {
+
 
   return (
     <>
-      <Navbar/>
-      <HeroSection/>
-      <MainSection/>
+      <BrowserRouter>
+      <Routes>
+        <Route exact path='/' element={<HomePage/>}/>
+
+        <Route path='/about' element={<About/>}/>
+
+        <Route path='/contactus' element={<ContactUs/>}/>
+
+
+
+      </Routes>
+      </BrowserRouter>
     </>
   )
 }

@@ -1,0 +1,18 @@
+.footerPersonal {
+    white-space: nowrap;
+}
+
+.containerPersonal {
+    border-top: 1px solid grey;
+    color: white;
+    background-color: #110F24;
+
+}
+
+.containerPersonal a {
+    color: grey;
+}
+
+.containerPersonal a:hover {
+    color: #E70FAB;
+}
