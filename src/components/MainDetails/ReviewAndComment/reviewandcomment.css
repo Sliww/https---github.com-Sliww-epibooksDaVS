@@ -1,0 +1,16 @@
+.areaReview {
+    border-top: 1px solid black;
+}
+
+.reviewArea {
+    border-bottom: 1px solid black;
+}
+
+.areaReview h2 {
+    color: #E70FAB;
+}
+
+.btnModal {
+    margin-top: 15px;
+    background-color: #E70FAB;
+}

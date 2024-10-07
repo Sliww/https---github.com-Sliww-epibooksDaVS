@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { BookContext } from '../../context/bookContext';
 import Swal from 'sweetalert2';
+import { ReviewAndComment } from "./ReviewAndComment/ReviewAndComment";
 
 export const MainDetailsPage = () => {
 
@@ -37,15 +38,18 @@ export const MainDetailsPage = () => {
             <Row>
                 <Col sm={6}>
                     
-                    <img className="w-100 p-5 " src={book.img} alt={book.title} />
+                <img className="w-100 p-5" src={book.img} alt={book.title} style={{ maxHeight: '500px', objectFit: 'contain' }} />
+
                     
                 </Col>
-                <Col sm={6} className="p-5">
+                <Col sm={6} className="p-5 d-flex flex-column justify-content-between">
                 <h1>{book.title}</h1>
-                <p><strong>Price:</strong> {book.price} $</p>
-                <p><strong>Category:</strong> {book.category}</p>
+                <p className="pElementsDetailas"><strong>Category:</strong> {book.category}</p>
+                <p className="pElementsDetailas"><strong>Price:</strong> {book.price} $</p>
+                
                 </Col>
             </Row>
+            <ReviewAndComment/>
         </Container>
     )
 }
