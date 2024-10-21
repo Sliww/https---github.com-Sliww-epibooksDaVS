@@ -1,34 +1,27 @@
-import { BookContext } from "../../../context/bookContext"
-import "./inputBooks.css"
-import { useContext, useState } from "react"
-
+import { BookContext } from "../../../context/bookcontext";
+import "./inputBooks.css";
+import { useContext, useState } from "react";
 
 export const InputBooks = () => {
-
-    const { books, setBooks, initialBooks } = useContext(BookContext)
-
-    const [searchInput, setSearchInput] = useState("")
+    const { books, setBooks, allBooks } = useContext(BookContext);
+    const [searchInput, setSearchInput] = useState("");
 
     const onChangeInput = (e) => {
-        setSearchInput(e.target.value)
-
-    }
+        setSearchInput(e.target.value);
+    };
 
     const filterBooks = () => {
-
         if (searchInput === "") {
-            setBooks(initialBooks)
+            setBooks(allBooks);
         } else {
-
             const filteredBook = books.filter(book => {
-                return book.title.toLowerCase().includes(searchInput.toLocaleLowerCase())
-            })
-            setBooks(filteredBook)
+                return book.title.toLowerCase().includes(searchInput.toLowerCase());
+            });
+            setBooks(filteredBook);
         }
-    }
+    };
 
-    console.log(initialBooks)
-
+    
 
     return (
         <div>
@@ -46,6 +39,6 @@ export const InputBooks = () => {
                 SEARCH
             </button>
         </div>
-    )
-}
+    );
+};
 

@@ -1,41 +1,48 @@
-import "./maindetails.css"
-import { Container, Row, Col } from "react-bootstrap"
+import "./maindetails.css";
+import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
-import { BookContext } from '../../context/bookContext';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { ReviewAndComment } from "./ReviewAndComment/ReviewAndComment";
 
 export const MainDetailsPage = () => {
     const { asin } = useParams();
-    const { books } = useContext(BookContext);
     const [book, setBook] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    
-    useEffect(() => {
-        if (books.length > 0) {
-            const foundBook = books.find(book => book.asin === asin);
-            if (foundBook) {
-                setBook(foundBook);
-            } else {
-                Swal.fire({
-                    title: 'Book not found',
-                    text: 'The book you are looking for does not exist.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
+    const endPoint = `https://epibooks.onrender.com/${asin}`;
+
+    const getBookFromApi = async () => {
+        try {
+            setLoading(true);
+            const response = await fetch(endPoint);
+
+            if (!response.ok) {
+                throw new Error('Book not found');
             }
+
+            const data = await response.json();
+            setBook(data[0]);
+        } catch (error) {
+            Swal.fire({
+                title: 'Book not found',
+                text: 'The book you are looking for does not exist.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        } finally {
             setLoading(false);
         }
-    }, [books, asin]);
+    };
 
-    
+    useEffect(() => {
+        getBookFromApi();
+    }, [asin]);
+
     if (loading) {
         return <p>Loading...</p>;
     }
 
-    
     if (!book) {
         return null;
     }
@@ -56,3 +63,4 @@ export const MainDetailsPage = () => {
         </Container>
     );
 };
+

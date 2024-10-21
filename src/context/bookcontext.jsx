@@ -1,56 +1,48 @@
-import { createContext, useState } from "react";
-import fantasy from "../data/fantasy.json";
-import history from "../data/history.json";
-import horror from "../data/horror.json";
-import romance from "../data/romance.json";
-import scifi from "../data/scifi.json";
+import { createContext, useState, useEffect } from "react";
 
 export const BookContext = createContext();
 
-export const BookContextProvider = ({children})=>{
-
-    const shuffleArray = (array) => {
-        const shuffledArray = [];
-        array.forEach((item) => {
-            const randomIndex = Math.floor(Math.random() * (shuffledArray.length + 1));
-            shuffledArray.splice(randomIndex, 0, item);
-        });
-        return shuffledArray;
-    };
-
-    const allBooks = [...scifi, ...history, ...fantasy, ...horror, ...romance]
-    const someBooks = shuffleArray([...allBooks]).slice(0, 20);
-
-    const [books, setBooks] = useState(someBooks)
-
-    const [initialBooks, setInitialBooks] = useState(someBooks)
-
-    const [selectedBook, setSelectedBook] = useState([]);
-
-    const [isSelected, setIsSelected] = useState([]);
-
+export const BookContextProvider = ({ children }) => {
+    const [books, setBooks] = useState([]);
+    const [allBooks, setAllBooks] = useState([]);
+    const [isBookLoading, setIsBookLoading] = useState(false);
+    const [isBookError, setIsBookError] = useState("");
     
 
-    const onChangeSelected = (asin) => {
-        setIsSelected(
-            isSelected.includes(asin) ? isSelected.splice(asin, 1) : [asin]
-        );
-        handleSelectBook(isSelected);
-    };
 
-    const handleSelectBook = (isSelected) => {
-        const selectedBook = books.find((book) => book.asin === String(isSelected));
-        if (selectedBook) {
-            setSelectedBook(selectedBook);
+    const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(12);
+
+    const getBooks = async () => {
+        setIsBookLoading(true);
+        setIsBookError("");
+        try {
+            const response = await fetch(`http://localhost:4010/books?page=${page}&pageSize=${pageSize}`
+            );
+            const result = await response.json();
+            console.log(result);
+            setBooks(result.books);
+            setAllBooks(result.books);
+        } catch (error) {
+            setIsBookError(error.message);
+        } finally {
+            setIsBookLoading(false);
         }
     };
 
+    useEffect(() => {
+        getBooks();
+    }, [page, pageSize]);
+
+    console.log(books)
+    console.log(allBooks)
 
     return (
         <BookContext.Provider
-        value= {{ someBooks, books, setBooks, initialBooks, isSelected, setIsSelected, onChangeSelected, handleSelectBook, selectedBook, setSelectedBook }}
+            value={{ books, setBooks, allBooks, isBookLoading, isBookError, page, setPage, pageSize, setPageSize }}
         >
             {children}
         </BookContext.Provider>
-    )
-}
+    );
+};
+
