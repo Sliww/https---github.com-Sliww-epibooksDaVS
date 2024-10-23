@@ -1,17 +1,22 @@
 import "./mainsection.css"
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { BookCards } from "./BookCard/BookCards";
 import { useContext } from "react";
 import { BookContext } from "../../context/bookcontext";
 import { HeroSection } from "../MyHero/myHero";
+import ResponsivePagination from 'react-responsive-pagination';
+import 'react-responsive-pagination/themes/classic.css';
 
 export const MainSection = () => {
 
-    const { books } = useContext(BookContext)
+    
+
+    const { books, page, pageSize, setPage, totalPages } = useContext(BookContext)
     console.log('Books:', books);
+    console.log('Total Pages:', totalPages);
     return (
         <>
-            <HeroSection/>
+            <HeroSection />
             <Container>
                 <Row className="mt-4">
 
@@ -28,6 +33,18 @@ export const MainSection = () => {
                         )
                     })}
                 </Row>
+                {books.length > 0 && (
+                    <Row>
+                        <Col className="p-5">
+                            <ResponsivePagination
+                                current={page}          
+                                total={totalPages}  
+                                onPageChange={setPage}  
+                            />
+                        </Col>
+                    </Row>
+                )}
+
             </Container>
         </>
 

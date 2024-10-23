@@ -8,6 +8,8 @@ export const BookContextProvider = ({ children }) => {
     const [isBookLoading, setIsBookLoading] = useState(false);
     const [isBookError, setIsBookError] = useState("");
     
+    const [totalPages, setTotalPages] = useState(0);
+    
 
 
     const [page, setPage] = useState(1);
@@ -17,12 +19,14 @@ export const BookContextProvider = ({ children }) => {
         setIsBookLoading(true);
         setIsBookError("");
         try {
-            const response = await fetch(`http://localhost:4010/books?page=${page}&pageSize=${pageSize}`
+            const response = await fetch(`${import.meta.env.VITE_SERVER_BASE_URL_EPI}/books?page=${page}&pageSize=${pageSize}`
             );
             const result = await response.json();
-            console.log(result);
+            console.log('API Response:', result);
             setBooks(result.books);
             setAllBooks(result.books);
+            setTotalPages(result.totalPages);
+            console.log('Total Pages:', result.totalPages); 
         } catch (error) {
             setIsBookError(error.message);
         } finally {
@@ -39,7 +43,7 @@ export const BookContextProvider = ({ children }) => {
 
     return (
         <BookContext.Provider
-            value={{ books, setBooks, allBooks, isBookLoading, isBookError, page, setPage, pageSize, setPageSize }}
+            value={{ books, setBooks, allBooks, isBookLoading, isBookError, page, setPage, pageSize, setPageSize, totalPages }}
         >
             {children}
         </BookContext.Provider>
