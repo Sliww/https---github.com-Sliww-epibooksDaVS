@@ -7,14 +7,14 @@ export const Footer = () => {
             <div className="container text-center text-md-left">
                 <div className="row">
                     <div className="col-md-6 mt-md-0 mt-3">
-                        <h5 className="text-uppercase">Epibooks</h5>
+                        <h5 className="text-uppercase h5title">Epibooks</h5>
                         <p>Immerse yourself in the joy of reading and let every book open the door to new ideas, adventures, and endless inspiration. Explore a world of stories waiting to be discovered, one page at a time.</p>
                     </div>
 
                     <hr className="clearfix w-100 d-md-none pb-0" />
 
                     <div className="col-md-3 mb-md-0 mb-3">
-                        <h5 className="text-uppercase">About</h5>
+                        <h5 className="text-uppercase h5title">About</h5>
                         <ul className="list-unstyled">
                             <li><a href="#!">Work with Us</a></li>
                             <li><a href="#!">Be a Promoter</a></li>
@@ -24,7 +24,7 @@ export const Footer = () => {
                     </div>
 
                     <div className="col-md-3 mb-md-0 mb-3">
-                        <h5 className="text-uppercase">Contacts</h5>
+                        <h5 className="text-uppercase h5title">Contacts</h5>
                         <ul className="list-unstyled">
                             <li><a href="#!">Numbers</a></li>
                             <li><a href="#!">Emails</a></li>

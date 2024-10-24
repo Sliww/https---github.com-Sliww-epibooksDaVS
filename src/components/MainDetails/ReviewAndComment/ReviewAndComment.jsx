@@ -166,7 +166,7 @@ export const ReviewAndComment = () => {
             <Row>
                 <Col sm={12} className="areaReview mt-5">
                     <h2>Leave Us a Review!</h2>
-                    <div className="d-flex justify-content-between align-items-center mt-5">
+                    <div className="d-flex bodyReviews justify-content-between align-items-center mt-5">
                         <p>Your opinion is very important to us! Leave a review on one of the books you've read to provide feedback for other interested users.</p>
                         <Button variant="primary" onClick={handleOpenCreateModal}>Add Review</Button>
                     </div>
@@ -179,7 +179,7 @@ export const ReviewAndComment = () => {
                     <ul>
                         {reviews && reviews.map((review) => (
                             <li key={review._id} className="d-flex justify-content-between align-items-center reviewArea">
-                                <div>
+                                <div className="bodyReviews">
                                     <h5>Author: {review.author}</h5>
                                     <p>Comment: {review.comment}</p>
                                     <p>Rate: {review.rate}/5</p>

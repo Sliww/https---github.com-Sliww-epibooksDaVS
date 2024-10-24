@@ -6,7 +6,7 @@ export const MainAboutPage = () => {
     return (
         <Container>
             <Row>
-                <Col>
+                <Col className="textColor">
                     <h1 className="text-center">About Us</h1>
 
                     <h3>Welcome to <strong>Epibooks</strong>, your go-to destination for exploring endless worlds through the pages of a book. Our passion is to fuel the desire for knowledge, adventure, and inspiration by offering readers a carefully curated selection of works ranging from timeless classics to the most captivating contemporary titles.</h3>

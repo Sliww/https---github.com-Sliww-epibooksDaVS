@@ -5,7 +5,7 @@ export const MainContactUs = () => {
     return (
         <Container>
             <Row>
-                <Col>
+                <Col className="textColor">
                     <h1 className="text-center">CONTACTS</h1>
 
                     <ul className="d-flex flex-column gap-5">

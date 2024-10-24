@@ -5,14 +5,18 @@
 .containerPersonal {
     border-top: 1px solid grey;
     color: white;
-    background-color: #110F24;
+    background-color: #1c1c1e;
 
 }
 
 .containerPersonal a {
-    color: grey;
+    color: #e5e5e5;
 }
 
 .containerPersonal a:hover {
-    color: #E70FAB;
+    color: #ff7f11;
+}
+
+.h5title {
+    color: #ff7f11;
 }

@@ -1,7 +1,7 @@
 .imgAbout {
     width: 100%;
     border-radius: 50%;
-
+    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.8);
 }
 
 h5 {
@@ -9,5 +9,9 @@ h5 {
 }
 
 strong {
-    color: #E70FAB;
+    color: #ff7f11;
+}
+
+.textColor{
+    color: #e5e5e5;
 }

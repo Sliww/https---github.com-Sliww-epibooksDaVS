@@ -10,7 +10,8 @@ export const MainDetailsPage = () => {
     const [book, setBook] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const endPoint = `https://epibooks.onrender.com/${asin}`;
+    
+    const endPoint = `http://localhost:4010/books/byasin/${asin}`;
 
     const getBookFromApi = async () => {
         try {
@@ -22,7 +23,7 @@ export const MainDetailsPage = () => {
             }
 
             const data = await response.json();
-            setBook(data[0]);
+            setBook(data.book);
         } catch (error) {
             Swal.fire({
                 title: 'Book not found',
@@ -53,14 +54,15 @@ export const MainDetailsPage = () => {
                 <Col sm={6}>
                     <img className="w-100 p-5" src={book.img} alt={book.title} style={{ maxHeight: '500px', objectFit: 'contain' }} />
                 </Col>
-                <Col sm={6} className="p-5 d-flex flex-column justify-content-between">
+                <Col sm={6} className="p-5 d-flex flex-column justify-content-between bodyCardDetail">
                     <h1>{book.title}</h1>
                     <p className="pElementsDetailas"><strong>Category:</strong> {book.category}</p>
-                    <p className="pElementsDetailas"><strong>Price:</strong> {book.price} $</p>
+                    <p className="pElementsDetailas"><strong>Price:</strong> {book.price.$numberDecimal} $</p>
                 </Col>
             </Row>
             <ReviewAndComment />
         </Container>
     );
 };
+
 

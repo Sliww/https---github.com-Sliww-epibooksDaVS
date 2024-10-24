@@ -7,10 +7,14 @@
 }
 
 .areaReview h2 {
-    color: #E70FAB;
+    color: #ff7f11;
 }
 
 .btnModal {
     margin-top: 15px;
-    background-color: #E70FAB;
+    background-color: #ff7f11;
+}
+
+.bodyReviews {
+    color: #e5e5e5;
 }

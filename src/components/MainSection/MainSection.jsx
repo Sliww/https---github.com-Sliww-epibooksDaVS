@@ -9,7 +9,7 @@ import 'react-responsive-pagination/themes/classic.css';
 
 export const MainSection = () => {
 
-    
+
 
     const { books, page, pageSize, setPage, totalPages } = useContext(BookContext)
     console.log('Books:', books);
@@ -35,11 +35,11 @@ export const MainSection = () => {
                 </Row>
                 {books.length > 0 && (
                     <Row>
-                        <Col className="p-5">
+                        <Col className="p-5 customPaginationButtons">
                             <ResponsivePagination
-                                current={page}          
-                                total={totalPages}  
-                                onPageChange={setPage}  
+                                current={page}
+                                total={totalPages}
+                                onPageChange={setPage}
                             />
                         </Col>
                     </Row>

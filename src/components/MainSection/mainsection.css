@@ -1,3 +1,15 @@
 .personall {
     border: 1px solid black;
 }
+
+:root {
+    --pagination-bg: transparent;
+    --pagination-active-color: white;
+    --pagination-active-bg: #ff7f11;
+    --pagination-hover-color: black;
+  }
+
+.page-item a.page-link {
+    color: #ff7f11;
+}
+
