@@ -13,6 +13,8 @@ export const ReviewAndComment = () => {
     const TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAzZjFhZmE5Njc4OTAwMTVlYWM4ZTUiLCJpYXQiOjE3MjgzMTE3MjcsImV4cCI6MTcyOTUyMTMyN30.RFtXCnYhEIeYAWT1GbuDE1HCPPssUpJPoUYZTk2slyU";
     const GET_ENDPOINT = `https://striveschool-api.herokuapp.com/api/books/${asin}/comments/`;
 
+    
+
     const getReviews = async () => {
         try {
             const response = await fetch(GET_ENDPOINT, {
