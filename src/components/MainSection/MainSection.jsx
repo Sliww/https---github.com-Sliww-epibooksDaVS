@@ -12,8 +12,6 @@ export const MainSection = () => {
 
 
     const { books, page, pageSize, setPage, totalPages } = useContext(BookContext)
-    console.log('Books:', books);
-    console.log('Total Pages:', totalPages);
     return (
         <>
             <HeroSection />

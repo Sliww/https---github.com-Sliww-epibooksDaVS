@@ -24,7 +24,7 @@ export const InputBooks = () => {
     
 
     return (
-        <div>
+        <div className=" d-none d-lg-flex">
             <input
                 className="p-1"
                 type="text"

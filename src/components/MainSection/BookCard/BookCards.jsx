@@ -6,7 +6,7 @@ import "./bookcard.css";
 
 export const BookCards = ({ title, img, price, category, asin }) => {
     return (
-        <Col sm={2}>
+        <Col sm={2} md={4} lg={2} className="d-flex justify-content-center">
             <Card className="cardBodyGeneral">
                 <Card.Img variant="top" src={img} className="card-img-top" />
                 <Card.Body className="card-body">

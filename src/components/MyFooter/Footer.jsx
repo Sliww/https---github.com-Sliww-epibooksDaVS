@@ -3,8 +3,8 @@ import { Container, Row, Col } from "react-bootstrap"
 
 export const Footer = () => {
     return (
-        <footer className="page-footer font-small blue pt-4 containerPersonal">
-            <div className="container text-center text-md-left">
+        <footer className="page-footer font-small blue pt-2 containerPersonal mt-5">
+            <div className="container text-center text-md-left mt-4">
                 <div className="row">
                     <div className="col-md-6 mt-md-0 mt-3">
                         <h5 className="text-uppercase h5title">Epibooks</h5>

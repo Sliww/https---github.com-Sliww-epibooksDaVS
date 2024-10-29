@@ -6,6 +6,7 @@ import { About } from './pages/About'
 import { ContactUs } from './pages/ContactUs'
 import { NotFound } from './pages/NotFoundPage'
 import { Details } from './pages/Details'
+import { AddBook } from './components/MyNav/ProfileIcon/OffCanvassMenu/AddBook/AddBook'
 
 const App = () => {
 
@@ -18,6 +19,7 @@ const App = () => {
         <Route path='/about' element={<About/>}/>
         <Route path='/contactus' element={<ContactUs/>}/>
         <Route path='/details/:asin' element={<Details/>}/>
+        <Route path='/addbook/' element={<AddBook/>}/>
         
 
         <Route path='*' element={<NotFound/>} />

@@ -21,12 +21,10 @@ export const BookContextProvider = ({ children }) => {
         try {
             const response = await fetch(`${import.meta.env.VITE_SERVER_BASE_URL_EPI}/books?page=${page}&pageSize=${pageSize}`
             );
-            const result = await response.json();
-            console.log('API Response:', result);
+            const result = await response.json()
             setBooks(result.books);
             setAllBooks(result.books);
             setTotalPages(result.totalPages);
-            console.log('Total Pages:', result.totalPages); 
         } catch (error) {
             setIsBookError(error.message);
         } finally {
@@ -38,8 +36,6 @@ export const BookContextProvider = ({ children }) => {
         getBooks();
     }, [page, pageSize]);
 
-    console.log(books)
-    console.log(allBooks)
 
     return (
         <BookContext.Provider

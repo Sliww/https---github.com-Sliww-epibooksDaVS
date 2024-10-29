@@ -3,7 +3,7 @@ import logo from "../../../assets/books-svgrepo-com.svg"
 
 export const Logo = () => {
     return (
-        <div className="logo p-3 gap-2">
+        <div className="logo p-1 gap-2">
             <a href="#">
                 <img src={logo} alt="logo" />
                 

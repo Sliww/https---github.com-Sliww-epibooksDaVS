@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 export const MenuLinks = () => {
     return (
-        <ul className="menuLinks d-flex gap-5 p-0">
+        <ul className="menuLinks d-none d-md-flex gap-5 p-0">
             <Link to='/'>
                 <li>Home</li>
             </Link>
