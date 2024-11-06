@@ -6,12 +6,13 @@ import Swal from 'sweetalert2';
 import { ReviewAndComment } from "./ReviewAndComment/ReviewAndComment";
 
 export const MainDetailsPage = () => {
-    const { asin } = useParams();
+    
+    const { id } = useParams();
     const [book, setBook] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [reviews, setReviews] = useState([]);
 
-    
-    const endPoint = `http://localhost:4010/books/byasin/${asin}`;
+    const endPoint = `http://localhost:4010/books/byid/${id}`;
 
     const getBookFromApi = async () => {
         try {
@@ -24,6 +25,8 @@ export const MainDetailsPage = () => {
 
             const data = await response.json();
             setBook(data.book);
+            setReviews(data.book.reviews || []);
+            console.log(data.book)
         } catch (error) {
             Swal.fire({
                 title: 'Book not found',
@@ -38,7 +41,7 @@ export const MainDetailsPage = () => {
 
     useEffect(() => {
         getBookFromApi();
-    }, [asin]);
+    }, [id]); 
 
     if (loading) {
         return <p>Loading...</p>;
@@ -47,6 +50,10 @@ export const MainDetailsPage = () => {
     if (!book) {
         return null;
     }
+
+    const handleReviewUpdate = (newReview) => {
+        setReviews(prevReviews => [...prevReviews, newReview]);
+    };
 
     return (
         <Container>
@@ -60,9 +67,10 @@ export const MainDetailsPage = () => {
                     <p className="pElementsDetailas"><strong>Price:</strong> {book.price.$numberDecimal} $</p>
                 </Col>
             </Row>
-            <ReviewAndComment />
+            <ReviewAndComment reviews={book.comments || []} bookId={id} onReviewCreated={handleReviewUpdate} />
         </Container>
     );
 };
+
 
 

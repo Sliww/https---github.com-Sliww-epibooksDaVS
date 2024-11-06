@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 import "./bookcard.css";
 
-export const BookCards = ({ title, img, price, category, asin }) => {
+export const BookCards = ({ title, img, price, category, id }) => { // Cambiato da asin a id
     return (
         <Col sm={2} md={4} lg={2} className="d-flex justify-content-center">
             <Card className="cardBodyGeneral">
@@ -24,7 +24,7 @@ export const BookCards = ({ title, img, price, category, asin }) => {
                         <Card.Text className="m-0">
                             <strong>{price} $</strong>
                         </Card.Text>
-                        <Link to={`/details/${asin}`}>
+                        <Link to={`/books/byid/${id}`}>
                             <Button className="buttonDetails">Details</Button>
                         </Link>
                     </div>
@@ -33,3 +33,4 @@ export const BookCards = ({ title, img, price, category, asin }) => {
         </Col>
     );
 };
+

@@ -1,11 +1,11 @@
 import { NavAndFooterLayout } from "../components/Layouts/NavAndFooterLayout"
-import { MainAboutPage } from "../components/MainAboutPage/MainAboutPage"
+import { AddBook } from "../components/MyNav/ProfileIcon/OffCanvassMenu/AddBook/AddBook"
 
 
-export const About = () => {
+export const AddBookPage = () => {
     return (
         <NavAndFooterLayout>
-            <MainAboutPage />
+            <AddBook />
         </NavAndFooterLayout>
     )
 }

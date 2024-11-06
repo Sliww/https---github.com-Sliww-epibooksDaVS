@@ -19,11 +19,20 @@ export const BookContextProvider = ({ children }) => {
         setIsBookLoading(true);
         setIsBookError("");
         try {
-            const response = await fetch(`${import.meta.env.VITE_SERVER_BASE_URL_EPI}/books?page=${page}&pageSize=${pageSize}`
+            const response = await fetch(
+                `${import.meta.env.VITE_SERVER_BASE_URL_EPI}/books?page=${page}&pageSize=${pageSize}`
             );
-            const result = await response.json()
-            setBooks(result.books);
-            setAllBooks(result.books);
+            const result = await response.json();
+    
+            console.log("Dati dei libri ricevuti:", result.books);
+    
+            const booksWithId = result.books.map((book) => ({
+                ...book,
+                id: book._id,
+            }));
+    
+            setBooks(booksWithId);
+            setAllBooks(booksWithId);
             setTotalPages(result.totalPages);
         } catch (error) {
             setIsBookError(error.message);
@@ -31,6 +40,7 @@ export const BookContextProvider = ({ children }) => {
             setIsBookLoading(false);
         }
     };
+    
 
     useEffect(() => {
         getBooks();

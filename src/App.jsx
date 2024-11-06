@@ -6,7 +6,8 @@ import { About } from './pages/About'
 import { ContactUs } from './pages/ContactUs'
 import { NotFound } from './pages/NotFoundPage'
 import { Details } from './pages/Details'
-import { AddBook } from './components/MyNav/ProfileIcon/OffCanvassMenu/AddBook/AddBook'
+import { AddBookPage } from './pages/AddBookPage'
+import { Login } from './pages/Login'
 
 const App = () => {
 
@@ -18,8 +19,9 @@ const App = () => {
         <Route exact path='/' element={<HomePage/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/contactus' element={<ContactUs/>}/>
-        <Route path='/details/:asin' element={<Details/>}/>
-        <Route path='/addbook/' element={<AddBook/>}/>
+        <Route path='/books/byid/:id' element={<Details/>}/>
+        <Route path='/addbook/' element={<AddBookPage/>}/>
+        <Route path='/login/' element={<Login/>}/>
         
 
         <Route path='*' element={<NotFound/>} />

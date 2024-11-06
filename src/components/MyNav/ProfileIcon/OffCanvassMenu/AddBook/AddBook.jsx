@@ -89,7 +89,7 @@ export const AddBook = () => {
 
 
     return (
-        <NavAndFooterLayout>
+        
             <Container>
                 <Row className='d-flex justify-content-center'>
                     <Col sm={8}>
@@ -169,7 +169,7 @@ export const AddBook = () => {
                 </Row>
             </Container>
 
-        </NavAndFooterLayout>
+        
 
     )
 }

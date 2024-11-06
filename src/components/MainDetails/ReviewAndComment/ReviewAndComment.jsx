@@ -1,39 +1,16 @@
-import "./reviewandcomment.css"
+import "./reviewandcomment.css";
 import { Row, Col, Button, Modal, Form } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import Swal from 'sweetalert2';
 
-export const ReviewAndComment = () => {
-    const { asin } = useParams();
-    const [reviews, setReviews] = useState([]);
+export const ReviewAndComment = ({ reviews: initialReviews, bookId, onReviewCreated }) => {
+    const [reviews, setReviews] = useState(initialReviews);
     const [showModal, setShowModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [selectedReview, setSelectedReview] = useState(null);
-    const TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAzZjFhZmE5Njc4OTAwMTVlYWM4ZTUiLCJpYXQiOjE3MjgzMTE3MjcsImV4cCI6MTcyOTUyMTMyN30.RFtXCnYhEIeYAWT1GbuDE1HCPPssUpJPoUYZTk2slyU";
-    const GET_ENDPOINT = `https://striveschool-api.herokuapp.com/api/books/${asin}/comments/`;
-
-    
-
-    const getReviews = async () => {
-        try {
-            const response = await fetch(GET_ENDPOINT, {
-                method: "GET",
-                headers: {
-                    Authorization: TOKEN,
-                    "Content-Type": "application/json",
-                },
-            });
-
-            const result = await response.json();
-            setReviews(result);
-        } catch (error) {
-            console.error("Error fetching reviews", error);
-        }
-    };
 
     const deleteReview = async (reviewId) => {
-        const DELETE_ENDPOINT = `https://striveschool-api.herokuapp.com/api/comments/${reviewId}`;
+        const DELETE_ENDPOINT = `http://localhost:4010/comments/delete/${reviewId}`;
 
         const result = await Swal.fire({
             title: 'Are you sure?',
@@ -51,7 +28,6 @@ export const ReviewAndComment = () => {
                 const response = await fetch(DELETE_ENDPOINT, {
                     method: "DELETE",
                     headers: {
-                        Authorization: TOKEN,
                         "Content-Type": "application/json",
                     },
                 });
@@ -87,13 +63,12 @@ export const ReviewAndComment = () => {
             rate: e.target.rate.value,
         };
 
-        const UPDATE_ENDPOINT = `https://striveschool-api.herokuapp.com/api/comments/${selectedReview._id}`;
+        const UPDATE_ENDPOINT = `http://localhost:4010/comments/update/${selectedReview._id}`;
 
         try {
             const response = await fetch(UPDATE_ENDPOINT, {
                 method: "PUT",
                 headers: {
-                    Authorization: TOKEN,
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(updatedReview),
@@ -113,13 +88,13 @@ export const ReviewAndComment = () => {
         }
     };
 
-    // apre il modale per lasciare una reccensione
+    
     const handleOpenCreateModal = () => {
         setShowCreateModal(true);
     };
 
     const handleCloseCreateModal = () => {
-        setShowCreateModal(false); // poi lo chiude
+        setShowCreateModal(false);
     };
 
     const handleCreateReview = async (e) => {
@@ -127,24 +102,25 @@ export const ReviewAndComment = () => {
         const newReview = {
             comment: e.target.comment.value,
             rate: e.target.rate.value,
-            elementId: asin,
+            book: bookId,
+            user: "6721795ed4c932999cd2bea8"
         };
-
-        const CREATE_ENDPOINT = `https://striveschool-api.herokuapp.com/api/comments/`;
-
+    
+        const CREATE_ENDPOINT = `http://localhost:4010/comment/create`;
+    
         try {
             const response = await fetch(CREATE_ENDPOINT, {
                 method: "POST",
                 headers: {
-                    Authorization: TOKEN,
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(newReview),
             });
-
+    
             if (response.ok) {
                 const createdReview = await response.json();
                 setReviews([...reviews, createdReview]);
+                onReviewCreated(createdReview);
                 Swal.fire('Created!', 'Your review has been created.', 'success');
             } else {
                 const errorMessage = await response.text();
@@ -158,11 +134,13 @@ export const ReviewAndComment = () => {
     };
 
     useEffect(() => {
-        if (asin) {
-            getReviews();
-        }
-    }, [asin]);
+        setReviews(initialReviews);
+    }, [initialReviews]);
 
+
+    useEffect(() => {
+        console.log('Reviews ricevuti:', reviews);
+    }, [reviews]);
     return (
         <>
             <Row>
@@ -172,7 +150,6 @@ export const ReviewAndComment = () => {
                         <p>Your opinion is very important to us! Leave a review on one of the books you've read to provide feedback for other interested users.</p>
                         <Button variant="primary" onClick={handleOpenCreateModal}>Add Review</Button>
                     </div>
-
                 </Col>
                 <Col sm={12} className="areaReview mt-5">
                     <h2>Reviews</h2>
@@ -180,9 +157,9 @@ export const ReviewAndComment = () => {
                 <Col>
                     <ul>
                         {reviews && reviews.map((review) => (
-                            <li key={review._id} className="d-flex justify-content-between align-items-center reviewArea">
+                            <li key={review.id} className="d-flex justify-content-between align-items-center reviewArea">
                                 <div className="bodyReviews">
-                                    <h5>Author: {review.author}</h5>
+                                    <h5>Author: {review.user || "Unknown"}</h5>
                                     <p>Comment: {review.comment}</p>
                                     <p>Rate: {review.rate}/5</p>
                                 </div>
@@ -242,8 +219,6 @@ export const ReviewAndComment = () => {
                     )}
                 </Modal.Body>
             </Modal>
-
-
 
             <Modal
                 show={showCreateModal}

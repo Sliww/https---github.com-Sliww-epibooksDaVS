@@ -24,8 +24,10 @@ export const OffCanvasEx = ({ name, ...props }) => {
                     <Offcanvas.Title>Hello! USER</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body className='bodyText'>
-                    <ul className='d-flex flex-column gap-4'>
-                        <li><a href='#'>LOGIN</a></li>
+                    <ul className='d-flex flex-column gap-4 menuLinks'>
+                        <Link to='/login'>
+                            <li>LOGIN</li>
+                        </Link>
                         <li><a href='#'>SIGN IN</a></li>
                         <hr></hr>
                         <li><strong>From now you can also add your own book for sale!</strong></li>

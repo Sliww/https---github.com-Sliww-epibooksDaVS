@@ -8,28 +8,23 @@ import ResponsivePagination from 'react-responsive-pagination';
 import 'react-responsive-pagination/themes/classic.css';
 
 export const MainSection = () => {
+    const { books, page, pageSize, setPage, totalPages } = useContext(BookContext);
 
-
-
-    const { books, page, pageSize, setPage, totalPages } = useContext(BookContext)
     return (
         <>
             <HeroSection />
             <Container>
                 <Row className="mt-4">
-
-                    {books.map((book, id) => {
-                        return (
-                            <BookCards
-                                key={`book+${id}`}
-                                title={book.title}
-                                img={book.img}
-                                category={book.category}
-                                price={book.price.$numberDecimal}
-                                asin={book.asin}
-                            />
-                        )
-                    })}
+                    {books.map((book, id) => (
+                        <BookCards
+                            key={`book+${id}`}
+                            title={book.title}
+                            img={book.img}
+                            category={book.category}
+                            price={book.price.$numberDecimal}
+                            id={book.id}
+                        />
+                    ))}
                 </Row>
                 {books.length > 0 && (
                     <Row>
@@ -42,9 +37,7 @@ export const MainSection = () => {
                         </Col>
                     </Row>
                 )}
-
             </Container>
         </>
-
-    )
-}
+    );
+};
