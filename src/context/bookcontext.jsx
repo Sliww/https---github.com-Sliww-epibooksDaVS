@@ -24,8 +24,6 @@ export const BookContextProvider = ({ children }) => {
             );
             const result = await response.json();
     
-            console.log("Dati dei libri ricevuti:", result.books);
-    
             const booksWithId = result.books.map((book) => ({
                 ...book,
                 id: book._id,

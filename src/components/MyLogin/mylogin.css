@@ -1,3 +1,15 @@
 .personalBorder {
-    border: 1px solid white;
+    border: 1px solid #ff7f11;
+    border-radius: 30px;
+    width: 350px;
+    box-shadow: 0 0 15px #ff7f11, 0 0 30px #ff7f11;
+}
+
+.swal2-popup {
+    border: 1px solid #ff7f11 !important;
+    box-shadow: 0 0 15px #ff7f11 !important;
+}
+
+.swal2-confirm {
+    box-shadow: 0 0 10px #ff7f11 !important;
 }

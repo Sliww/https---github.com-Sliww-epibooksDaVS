@@ -8,6 +8,7 @@ import { NotFound } from './pages/NotFoundPage'
 import { Details } from './pages/Details'
 import { AddBookPage } from './pages/AddBookPage'
 import { Login } from './pages/Login'
+import ProtectedRoutes from './middlewares/ProtectedRoutes'
 
 const App = () => {
 
@@ -20,9 +21,13 @@ const App = () => {
         <Route path='/about' element={<About/>}/>
         <Route path='/contactus' element={<ContactUs/>}/>
         <Route path='/books/byid/:id' element={<Details/>}/>
-        <Route path='/addbook/' element={<AddBookPage/>}/>
         <Route path='/login/' element={<Login/>}/>
-        
+
+        {/* Protected Routes */}
+
+        <Route element={<ProtectedRoutes/>}>
+          <Route path='/addbook/' element={<AddBookPage/>}/>
+        </Route>
 
         <Route path='*' element={<NotFound/>} />
 

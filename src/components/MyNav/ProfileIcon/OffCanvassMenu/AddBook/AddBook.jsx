@@ -1,13 +1,19 @@
 import { useState } from 'react'
-import { NavAndFooterLayout } from '../../../../Layouts/NavAndFooterLayout'
 import { Container, Row, Col } from "react-bootstrap";
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useSession from '../../../../../hooks/useSession';
 import './addbook.css'
+
 
 
 export const AddBook = () => {
     const [formData, setFormData] = useState({})
     const [file, setFile] = useState(null)
+    const navigate = useNavigate();
+
+    const session = useSession();
+    console.log(session);
 
     const onChangeFile = (event) => {
         setFile(event.target.files[0])
@@ -70,6 +76,14 @@ export const AddBook = () => {
                         text: "The book has been added successfully!",
                         icon: "success",
                         confirmButtonText: "OK",
+                        confirmButtonColor: '#ff7f11',
+                        background: '#1a1a1a',
+                        color: '#fff'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            navigate('/');
+                            window.location.reload();
+                        }
                     });
                 } else {
                     const errorData = await res.json();

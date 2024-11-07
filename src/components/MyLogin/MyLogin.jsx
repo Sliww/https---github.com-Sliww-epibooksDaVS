@@ -1,11 +1,13 @@
 import "./mylogin.css"
 import { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
+import googleLogo from "../../assets/google.svg";
+import Swal from 'sweetalert2';
 
 export const MyLogin = () => {
     const [loginData, setLoginData] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -14,23 +16,47 @@ export const MyLogin = () => {
         setLoginData({ ...loginData, [name]: value });
     };
 
-    const postRequest = async (url, data) => {
+    const postRequest = async () => {
+        setIsLoading(true);
         try {
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
             const res = await fetch(`${import.meta.env.VITE_SERVER_BASE_URL_EPI}/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(loginData)
-            })
-            const data = await res.json();
+            });
+
+            const responseData = await res.json();
+
             if (res.ok) {
-                localStorage.setItem("auth", JSON.stringify(data.token))
-                navigate("/", { replace: true });
+                localStorage.setItem("token", JSON.stringify(responseData.token));
+                navigate("/");
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Errore di accesso',
+                    text: 'Email o password non corrette',
+                    confirmButtonColor: '#ff7f11',
+                    background: '#1a1a1a',
+                    color: '#fff'
+                });
+                console.log("Errore login:", responseData);
             }
-            return res
         } catch (error) {
-            console.log(error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Errore',
+                text: 'Si è verificato un errore durante il login. Riprova più tardi.',
+                confirmButtonColor: '#ff7f11',
+                background: '#1a1a1a',
+                color: '#fff'
+            });
+            console.log("Errore nella richiesta:", error.message);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -46,9 +72,9 @@ export const MyLogin = () => {
                     <div className="h-100 d-flex flex-column align-items-center justify-content-center">
                         <form
                             onSubmit={onSubmitHandler}
-                            className="d-flex flex-column gap-4 personalBorder"
+                            className="d-flex flex-column gap-3 personalBorder p-4"
                         >
-                            <h2 className="text-white">Login</h2>
+                            <h2 className="text-white text-center">LOGIN</h2>
                             <input
                                 className="form-control"
                                 onChange={onChangeHandler}
@@ -61,10 +87,37 @@ export const MyLogin = () => {
                                 name="password"
                                 type="password"
                                 placeholder="Password" />
-                            <button type="submit">Login</button>
-                            <button type="button">Login with Google</button>
+                            <button
+                                className="btn btn-primary"
+                                type="submit"
+                                disabled={isLoading}
+                            >
+                                {isLoading ? (
+                                    <>
+                                        <Spinner
+                                            as="span"
+                                            animation="border"
+                                            size="sm"
+                                            role="status"
+                                            aria-hidden="true"
+                                        />
+                                        <span>Loading...</span>
+                                    </>
+                                ) : (
+                                    'Login'
+                                )}
+                            </button>
+                            <button
+                                className="btn btn-primary d-flex justify-content-center align-items-center gap-3"
+                                type="button"
+                            >
+                                <img src={googleLogo} alt="Google Logo" />
+                                Login with Google
+                            </button>
                             <br />
-                            <button type="button">Register</button>
+                            <button
+                                className="btn btn-primary"
+                                type="button">Register</button>
                         </form>
                     </div>
                 </Col>

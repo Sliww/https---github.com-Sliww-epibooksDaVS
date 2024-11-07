@@ -6,31 +6,27 @@ import Swal from 'sweetalert2';
 import { ReviewAndComment } from "./ReviewAndComment/ReviewAndComment";
 
 export const MainDetailsPage = () => {
-    
     const { id } = useParams();
     const [book, setBook] = useState(null);
     const [loading, setLoading] = useState(true);
     const [reviews, setReviews] = useState([]);
 
-    const endPoint = `http://localhost:4010/books/byid/${id}`;
-
     const getBookFromApi = async () => {
         try {
             setLoading(true);
-            const response = await fetch(endPoint);
+            const response = await fetch(`${import.meta.env.VITE_SERVER_BASE_URL_EPI}/books/byid/${id}`);
 
             if (!response.ok) {
                 throw new Error('Book not found');
             }
 
-            const data = await response.json();
-            setBook(data.book);
-            setReviews(data.book.reviews || []);
-            console.log(data.book)
+            const { book } = await response.json();
+            setBook(book);
+            setReviews(book.comments || []);
         } catch (error) {
             Swal.fire({
-                title: 'Book not found',
-                text: 'The book you are looking for does not exist.',
+                title: 'Error',
+                text: 'Failed to load book details',
                 icon: 'error',
                 confirmButtonText: 'OK'
             });
@@ -59,15 +55,28 @@ export const MainDetailsPage = () => {
         <Container>
             <Row>
                 <Col sm={6}>
-                    <img className="w-100 p-5" src={book.img} alt={book.title} style={{ maxHeight: '500px', objectFit: 'contain' }} />
+                    <img 
+                        className="w-100 p-5" 
+                        src={book.img} 
+                        alt={book.title} 
+                        style={{ maxHeight: '500px', objectFit: 'contain' }} 
+                    />
                 </Col>
                 <Col sm={6} className="p-5 d-flex flex-column justify-content-between bodyCardDetail">
                     <h1>{book.title}</h1>
-                    <p className="pElementsDetailas"><strong>Category:</strong> {book.category}</p>
-                    <p className="pElementsDetailas"><strong>Price:</strong> {book.price.$numberDecimal} $</p>
+                    <p className="pElementsDetailas">
+                        <strong>Category:</strong> {book.category}
+                    </p>
+                    <p className="pElementsDetailas">
+                        <strong>Price:</strong> {book.price.$numberDecimal} $
+                    </p>
                 </Col>
             </Row>
-            <ReviewAndComment reviews={book.comments || []} bookId={id} onReviewCreated={handleReviewUpdate} />
+            <ReviewAndComment 
+                reviews={reviews} 
+                bookId={id} 
+                onReviewCreated={handleReviewUpdate} 
+            />
         </Container>
     );
 };
