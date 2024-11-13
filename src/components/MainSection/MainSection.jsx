@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { BookCards } from "./BookCard/BookCards";
 import { useContext } from "react";
 import { BookContext } from "../../context/bookcontext";
-import { HeroSection } from "../MyHero/myHero";
+import { HeroSection } from "../MyHero/MyHero";
 import ResponsivePagination from 'react-responsive-pagination';
 import 'react-responsive-pagination/themes/classic.css';
 
