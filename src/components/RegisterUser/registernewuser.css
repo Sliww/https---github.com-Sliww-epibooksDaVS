@@ -1,0 +1,30 @@
+.register-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.register-form {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.2rem rgba(13,110,253,.25);
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    font-weight: 500;
+}
+
+.alert {
+    margin-bottom: 20px;
+}

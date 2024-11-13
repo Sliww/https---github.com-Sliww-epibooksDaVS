@@ -8,6 +8,8 @@ import { NotFound } from './pages/NotFoundPage'
 import { Details } from './pages/Details'
 import { AddBookPage } from './pages/AddBookPage'
 import { Login } from './pages/Login'
+import { LoginSuccessPage } from './pages/LoginSuccessPage'
+import { Register } from './pages/Register'
 import ProtectedRoutes from './middlewares/ProtectedRoutes'
 
 const App = () => {
@@ -22,7 +24,9 @@ const App = () => {
         <Route path='/contactus' element={<ContactUs/>}/>
         <Route path='/books/byid/:id' element={<Details/>}/>
         <Route path='/login/' element={<Login/>}/>
-
+        <Route path='/success/:token' element={<LoginSuccessPage/>}/>
+        <Route path='/register/' element={<Register/>}/>
+        
         {/* Protected Routes */}
 
         <Route element={<ProtectedRoutes/>}>

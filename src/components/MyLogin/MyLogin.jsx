@@ -1,7 +1,7 @@
 import "./mylogin.css"
 import { useState } from "react";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import googleLogo from "../../assets/google.svg";
 import Swal from 'sweetalert2';
 
@@ -65,6 +65,10 @@ export const MyLogin = () => {
         await postRequest();
     };
 
+    const handleGoogleLogin = () => {
+        window.location.href = `${import.meta.env.VITE_SERVER_BASE_URL_EPI}/auth/google`;
+    };
+
     return (
         <Container className="vh-100">
             <Row className="h-100">
@@ -109,15 +113,20 @@ export const MyLogin = () => {
                             </button>
                             <button
                                 className="btn btn-primary d-flex justify-content-center align-items-center gap-3"
+                                onClick={handleGoogleLogin}
                                 type="button"
                             >
                                 <img src={googleLogo} alt="Google Logo" />
                                 Login with Google
                             </button>
                             <br />
-                            <button
-                                className="btn btn-primary"
-                                type="button">Register</button>
+                            <Link to="/register">
+                                <button
+                                    className="btn btn-primary w-100"
+                                    type="button">
+                                    Register
+                                </button>
+                            </Link>
                         </form>
                     </div>
                 </Col>

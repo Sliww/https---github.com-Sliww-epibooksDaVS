@@ -5,7 +5,7 @@ export const NotFound = () => {
         <Container>
             <Row>
                 <Col>
-                    <h1>Oops!! Questa pagina non esiste...</h1>
+                    <h1 className="text-white">Oops!! Questa pagina non esiste...</h1>
                 </Col>
             </Row>
         </Container>
