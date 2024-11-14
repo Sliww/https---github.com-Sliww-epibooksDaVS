@@ -13,3 +13,8 @@
 .swal2-confirm {
     box-shadow: 0 0 10px #ff7f11 !important;
 }
+
+.personalBorder a:hover {
+    color: #ff7f11 !important;
+    text-decoration: underline !important;
+}

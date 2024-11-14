@@ -127,11 +127,13 @@ export const MyLogin = () => {
                                     Register
                                 </button>
                             </Link>
+                            <Link to="/" className="text-center text-white text-decoration-none mt-2">
+                                Return to Home
+                            </Link>
                         </form>
                     </div>
                 </Col>
             </Row>
         </Container>
-
     )
 } 

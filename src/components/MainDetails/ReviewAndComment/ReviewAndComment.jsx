@@ -235,14 +235,14 @@ export const ReviewAndComment = ({ reviews: initialReviews, bookId, onReviewCrea
                 </Modal.Body>
             </Modal>
 
-            <Modal show={showCreateModal} onHide={handleCloseCreateModal}>
-                <Modal.Header closeButton>
+            <Modal show={showCreateModal} onHide={handleCloseCreateModal} className="text-white">
+                <Modal.Header closeButton className="bg-dark">
                     <Modal.Title>Add Review</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body className="bg-dark">
                     <Form onSubmit={handleCreateReview}>
                         <Form.Group controlId="formComment">
-                            <Form.Label>Comment</Form.Label>
+                            <Form.Label className="text-white">Comment</Form.Label>
                             <Form.Control
                                 type="text"
                                 name="comment"
@@ -250,7 +250,7 @@ export const ReviewAndComment = ({ reviews: initialReviews, bookId, onReviewCrea
                             />
                         </Form.Group>
                         <Form.Group controlId="formRate">
-                            <Form.Label>Rate (1-5)</Form.Label>
+                            <Form.Label className="text-white">Rate (1-5)</Form.Label>
                             <Form.Control
                                 type="number"
                                 min="1"
@@ -259,7 +259,7 @@ export const ReviewAndComment = ({ reviews: initialReviews, bookId, onReviewCrea
                                 required
                             />
                         </Form.Group>
-                        <Button className="btnModal" variant="primary" type="submit">
+                        <Button className="btnModal mt-3" variant="primary" type="submit">
                             Create Review
                         </Button>
                     </Form>

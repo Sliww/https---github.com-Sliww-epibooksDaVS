@@ -2,3 +2,20 @@
     border-radius: 50%;
     border: 1px 
 }
+
+.modal-content {
+    background-color: #1a1a1a !important;
+}
+
+.modal-header .btn-close {
+    color: white !important;
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.modal-body p {
+    margin-bottom: 0.5rem;
+}
+
+.modal-body strong {
+    color: #ff7f11;
+}
